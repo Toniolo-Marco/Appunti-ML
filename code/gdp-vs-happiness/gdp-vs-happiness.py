@@ -87,15 +87,15 @@ austria_gdp = pd.DataFrame({'GDP per capita, PPP (constant 2017 international $)
 predicted_happiness_score_linear = linear_regression_model.predict(austria_gdp.values)
 print('Predicted Happiness Score for Austria (Linear Regression):', predicted_happiness_score_linear[0])
 
-i = 2
-while i <= 60:
-    polynomial_regression_model, poly_features = polynomial_regression(X.values, y.values, degree=i)
+# i = 2
+# while i <= 60:
+#     polynomial_regression_model, poly_features = polynomial_regression(X.values, y.values, degree=i)
 
-    austria_gdp_poly = poly_features.transform(austria_gdp.values)
-    predicted_happiness_score_poly = polynomial_regression_model.predict(austria_gdp_poly)
-    print(f'Predicted Happiness Score for Austria (Polynomial Regression degree {i}):', predicted_happiness_score_poly[0])
+#     austria_gdp_poly = poly_features.transform(austria_gdp.values)
+#     predicted_happiness_score_poly = polynomial_regression_model.predict(austria_gdp_poly)
+#     print(f'Predicted Happiness Score for Austria (Polynomial Regression degree {i}):', predicted_happiness_score_poly[0])
     
-    if i == 2:
-        i = 3
-    else:
-        i = i + 2
+#     if i == 2:
+#         i = 3
+#     else:
+#         i = i + 2
