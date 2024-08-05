@@ -34,10 +34,10 @@ def linear_regression(X, y):
     
     plot_data_and_model(X, y, 
                         model=model, 
-                        title='GDP per capita vs. Happiness Score (Linear Regression)', 
+                        title='GDP per capita vs. Life-satisfaction Score (Linear Regression)', 
                         xlabel='GDP per capita (USD $)', 
                         ylabel='Cantril ladder score', 
-                        filename='gdp-vs-happiness-linear-regression.png')
+                        filename='gdp-vs-life-satisfaction-linear-regression.png')
     
     return model
 
@@ -51,18 +51,18 @@ def polynomial_regression(X, y, degree):
                         model=model, 
                         poly_features=poly_features, 
                         degree=degree, 
-                        title=f'GDP per capita vs. Happiness Score (Polynomial Regression, degree={degree})', 
+                        title=f'GDP per capita vs. Life-satisfaction Score (Polynomial Regression, degree={degree})', 
                         xlabel='GDP per capita (USD $)', 
                         ylabel='Cantril ladder score', 
-                        filename=f'gdp-vs-happiness-poly-regression-degree-{degree}.png')
+                        filename=f'gdp-vs-life-satisfaction-poly-regression-degree-{degree}.png')
     
     return model, poly_features
 
 # Load the combined dataset
-file_path = './dataset/gdp-happiness-population.csv'
+file_path = './dataset/gdp-life-satisfaction-population.csv'
 df = pd.read_csv(file_path)
 
-# Print Austria's GDP per capita and happiness score
+# Print Austria's GDP per capita and life-satisfaction score
 austria = df[df['Entity'] == 'Austria']
 print(austria)
 
@@ -72,30 +72,25 @@ df = df[(df['Entity'] != 'Austria') & (df['Entity'] != 'World')]
 X = df[['GDP per capita, PPP (constant 2017 international $)']]
 y = df['Cantril ladder score']
 
-# Plot GDP per capita vs. Happiness score
+# Plot GDP per capita vs. life-satisfaction score
 plot_data_and_model(X.values, y.values,
-                    title='GDP per capita vs. Happiness Score', 
+                    title='GDP per capita vs. Life-satisfaction Score', 
                     xlabel='GDP per capita (USD $)', 
                     ylabel='Cantril ladder score', 
-                    filename='gdp-vs-happiness.png')
+                    filename='gdp-vs-life-satisfaction.png')
 
 # Plot and model
 linear_regression_model = linear_regression(X.values, y.values)
 
-# Predict the happiness score for Austria
+# Predict the life-satisfaction score for Austria
 austria_gdp = pd.DataFrame({'GDP per capita, PPP (constant 2017 international $)': [austria['GDP per capita, PPP (constant 2017 international $)'].values[0]]})
-predicted_happiness_score_linear = linear_regression_model.predict(austria_gdp.values)
-print('Predicted Happiness Score for Austria (Linear Regression):', predicted_happiness_score_linear[0])
+predicted_life_satisfaction_score_linear = linear_regression_model.predict(austria_gdp.values)
+print('Predicted life-satisfaction Score for Austria (Linear Regression):', predicted_life_satisfaction_score_linear[0])
 
-# i = 2
-# while i <= 60:
-#     polynomial_regression_model, poly_features = polynomial_regression(X.values, y.values, degree=i)
+degrees = [2, 3, 5, 15, 60]
+for i in degrees:
+    polynomial_regression_model, poly_features = polynomial_regression(X.values, y.values, degree=i)
 
-#     austria_gdp_poly = poly_features.transform(austria_gdp.values)
-#     predicted_happiness_score_poly = polynomial_regression_model.predict(austria_gdp_poly)
-#     print(f'Predicted Happiness Score for Austria (Polynomial Regression degree {i}):', predicted_happiness_score_poly[0])
-    
-#     if i == 2:
-#         i = 3
-#     else:
-#         i = i + 2
+    austria_gdp_poly = poly_features.transform(austria_gdp.values)
+    predicted_life_satisfaction_score_poly = polynomial_regression_model.predict(austria_gdp_poly)
+    print(f'Predicted life-satisfaction Score for Austria (Polynomial Regression degree {i}):', predicted_life_satisfaction_score_poly[0])

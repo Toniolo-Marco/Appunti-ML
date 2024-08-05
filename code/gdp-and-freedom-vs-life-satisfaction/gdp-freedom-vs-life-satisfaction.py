@@ -44,13 +44,13 @@ z_surf = model.predict(np.c_[x_surf.ravel(), y_surf.ravel()]).reshape(x_surf.sha
 ax.plot_surface(x_surf, y_surf, z_surf, color='b', alpha=0.3, rstride=100, cstride=100)
 
 # Save the plot
-plt.savefig('./img/gdp-freedom-vs-happiness-3d-scatter-with-model.png')
+plt.savefig('./img/gdp-freedom-vs-life-satisfaction-3d-scatter-with-model.png')
 plt.close()
 
 # Making predictions on Austria's GDP per capita and Freedom Index
 austria_features = austria[['GDP per capita, PPP (constant 2017 international $)', 'Freedom Index']]
 if not austria_features.empty:
     y_pred = model.predict(austria_features)
-    print(f'Predicted happiness score for Austria: {y_pred[0]:.2f}')
+    print(f'Predicted life satisfaction score for Austria: {y_pred[0]:.2f}')
 else:
     print("No valid data for Austria to make predictions.")
