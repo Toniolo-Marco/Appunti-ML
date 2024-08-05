@@ -45,7 +45,7 @@ ax.plot_surface(x_surf, y_surf, z_surf, color='b', alpha=0.3, rstride=100, cstri
 
 # Save the plot
 plt.savefig('./img/gdp-freedom-vs-life-satisfaction-3d-scatter-with-model.png')
-plt.close()
+plt.close() 
 
 # Making predictions on Austria's GDP per capita and Freedom Index
 austria_features = austria[['GDP per capita, PPP (constant 2017 international $)', 'Freedom Index']]
