@@ -108,7 +108,7 @@ pyxdg==0.28
 PyYAML==6.0.1
 ranger-fm==1.9.3
 regex==2024.7.24
-reportlab==4.1.0
+reportlab==4.2.2
 requests==2.32.3
 requests-file==2.1.0
 rsa==4.9
