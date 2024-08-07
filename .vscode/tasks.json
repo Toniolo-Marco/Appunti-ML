@@ -2,25 +2,41 @@
 	"version": "2.0.0",
 	"tasks": [
 		{
-			"label": "typst compile main",
+			"label": "typst compile main on chapter changed",
 			"type": "shell",
-			"command": "typst",
-			"args": ["compile", "main.typ", "--root=../"],
+			"command": "watchexec",
+			"args": [
+				"--exts",
+				"typ",
+				"--",
+				"\"typst compile main.typ --root=../\""
+			],
 			"options": {
 				"cwd": "${workspaceFolder}/src/"
-			}
-		},
-		/*watch if any of .typ file is changed*/
-		{
-			"label": "typst watch",
-			"type": "shell",
-			"command": "typst",
-			"args": ["watch", "--root=../"],
-			"options": {
-				"cwd": "${workspaceFolder}/src/"
+			},
+			"runOptions": {
+				"runOn": "folderOpen"
 			}
 		}
 
+		// {
+		// 	"label": "typst compile main",
+		// 	"type": "shell",
+		// 	"command": "typst",
+		// 	"args": ["compile", "main.typ", "--root=../"],
+		// 	"options": {
+		// 		"cwd": "${workspaceFolder}/src/"
+		// 	}
+		// },
+		// /*watch if any of .typ file is changed*/
+		// {
+		// 	"label": "typst watch",
+		// 	"type": "shell",
+		// 	"command": "typst",
+		// 	"args": ["watch", "--root=../"],
+		// 	"options": {
+		// 		"cwd": "${workspaceFolder}/src/"
+		// 	}
+		// }
 	]
 }
-
