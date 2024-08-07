@@ -76,7 +76,7 @@ pipx==1.6.0
 platformdirs==4.2.2
 pluggy==1.5.0
 ply==3.11
-protobuf==5.27.2
+protobuf==5.27.3
 ProtonUp-Qt==2.10.0
 pspdfutils==3.3.4
 psutil==6.0.0
