@@ -55,7 +55,8 @@ Le principali task per cui viene adottato il Machine Learning sono:
 - Anomaly Detection: identificare pattern anomali nei dati.
 - Synthesis: generare nuovi dati che seguano la stessa distribuzione dei dati originali. (_e.g._ textures, speech, ecc.)
 - Denoising: in questo task il modello, ha come input un dato corrotto $bold(accent(x,~))$ e deve predire il dato originale bold(x); o meglio la distribuzione di probabilità $p(bold(x)|bold(accent(x,~)))$.
-- Density Estimation: 
+- Density Estimation:
+- assd 
 
 
 /*TODO: terminare questo trafiletto*/

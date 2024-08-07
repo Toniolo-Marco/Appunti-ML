@@ -39,7 +39,7 @@ $ hat(y) = b + w_1 x_1 + w_2 x_2 + ... + w_n x_n $
 Dalla formula generalizzata capiamo che la regressione lineare può funzionare anche in più dimensioni, non solo con una variabile indipendente; ed in questo caso si dice "multivariata". Per esempio con $2$ variabili indipendenti avremo un piano. Dunque se aggiungessimo lo #link("https://worldpopulationreview.com/country-rankings/freedom-index-by-country")[Human Freedom Index] come feature, avremmo un modello tridimensionale:
 
 #figure(
-  image("../code/gdp-and-freedom-vs-life-satisfaction/img/gdp-freedom-vs-life-satisfaction-3d-scatter-with-model.png", width: 100%),
+  image("../code/gdp-and-freedom-vs-life-satisfaction/img/gdp-freedom-vs-life-satisfaction-3d-scatter-with-model.png", width: 90%),
   caption: [Plot dei dati GDP e Freedom vs Life satisfaction in 3D]
 )
 
