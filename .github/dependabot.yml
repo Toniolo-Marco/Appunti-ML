@@ -4,7 +4,11 @@ updates:
     directory: "/code/" # Location of package files, adjust if needed
     schedule:
       interval: "daily"
-    open-pull-requests-limit: 10 # Limit the number of open PRs
+    open-pull-requests-limit: 1 # Limit the number of open PRs
     assignees:
       - Toniolo-Marco
     rebase-strategy: "auto" # Rebase strategy for PRs
+    groups:
+      all-dependencies:
+        patterns:
+          - ".*" #  Include all dependencies
