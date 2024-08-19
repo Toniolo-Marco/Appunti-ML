@@ -45,7 +45,7 @@ I modelli possono essere divisi in categorie, anche se con eccezioni e sfumature
 - Semi-Supervised Learning: il modello apprende sia da dati etichettati che non etichettati. 
   Viene utilizzato in sostituzione al supervised learning nei casi in cui etichettare i dati risulti troppo costoso o, richieda troppo tempo.
 
-== Task <task>
+== Tasks <tasks>
 
 Le principali task per cui viene adottato il Machine Learning sono:
 - Classification: classificare un input in una delle classi predefinite.

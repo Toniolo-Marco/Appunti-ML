@@ -13,6 +13,10 @@
   date: (auto)
 )
 
+#set quote(block: true)
+#show quote: set align(center)
+
+
 #show link: underline
 
 #include "chapter-1.typ"
@@ -22,3 +26,5 @@
 #include "chapter-3.typ"
 
 #include "chapter-4.typ"
+
+#include "chapter-5.typ"

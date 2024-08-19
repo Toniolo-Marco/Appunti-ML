@@ -52,11 +52,14 @@ in questo modo minimiziamo una somma che comprende sia l'errore quadratico medio
 Nel campo del Machine Learning esistono diverse varianti per quanto riguarda le tecniche di regolarizzazione. 
 
 Famiglia delle $L^p$ norme; generalizzata con la formula:
+
 $ ||bold(x)||_p = (sum^n_(i = 1) |x_i|^p )^frac(1,p) $ 
 con $n$ ad indicare le dimensioni e $p in [1,+infinity)$. 
 
 - La norma 1 è banalmente la somma dei valori assoluti dei componenti.
-- La norma 2 o Norma Euclidea, è la radice quadrata della somma dei quadrati dei valori: $ ||bold(x)||_2 = sqrt(sum^n_(i = 1) x_i^2) $. 
+- La norma 2 o Norma Euclidea, è la radice quadrata della somma dei quadrati dei valori: 
+
+$ ||bold(x)||_2 = sqrt(sum^n_(i = 1) x_i^2) $. 
 
 == Dataset Augmentation <dataset-augmentation>
 
