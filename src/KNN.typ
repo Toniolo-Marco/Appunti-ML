@@ -108,7 +108,7 @@ Tornando all'esempio precedente, possiamo vedere come la standardizzazione influ
 
 Questa procedura scala i dati in modo che siano compresi tra 0 e 1. La formula è la seguente:
 
-$ x_{"scaled"} = frac(x - min(x), max(x) - min(x)) $
+$ x_"scaled" = frac(x - min(x), max(x) - min(x)) $
 
 Di seguito possiamo vedere come il Min-Max scaling influenzi la densità del dataset:
 
@@ -132,7 +132,7 @@ Contrariamente a quanto si possa pensare esistono diverse metriche che possono e
       image("../img/2D_distance.png", width: 100%), 
       caption: "La lunghezza della linea blu, rossa e gialla è la medesima e rappresenta la Manhattan distance tra i due punti (12). La lunghezza della linea verde rappresenta la Euclidean distance tra i due punti (6√2)",
       numbering: none,
-      ),
+    ),
     [
       - #text(blue)[Manhattan distance]: la distanza di Manhattan è la somma delle differenze assolute tra le coordinate dei punti. La formula è la seguente:
       $ D(x, y) = sum_(i=1)^n |x_i - y_i| $
@@ -180,8 +180,13 @@ Per evidenziare l'andamento esponenziale trovate qui un grafico che indica la di
 == Computational Cost
 
 Il fatto che KNN sia un _lazy learner_ non implica che non ci sia un costo computazionale; anzi il costo compotuzionale pesa solo sulla fase di predizione (_inferece phase_).
-L'algoritmo è  lineare, il calcolo della distanza per tutti i $k$ punti del dataset: $O(k N)$. Alcune strutture dati possono essere utilizzate per ridurre il costo computazionale, come il KD-Tree o il Ball-Tree, che permettono di ridurre il costo computazionale a $O(log(N))$.
+L'algoritmo è  lineare, il calcolo della distanza per tutti i $k$ punti del dataset: $O(k N)$. Alcune strutture dati possono essere utilizzate per ridurre il costo computazionale, come il KD-Tree o il Ball-Tree, che permettono di ridurre il costo computazionale a $O(log(N))$. Di seguito presentiamo una carrellata delle strutture dati più comuni:
 
 === KD-Tree
 
-La struttura richiede un pre-processing dei dati e si presenta come un albero binario. Ogni nodo dell'albero rappresenta un iperpiano che divide lo spazio in due parti, o più semplicemente impone un vincolo tra i due nodi figli successivi. I nodi foglia contengono i punti del dataset. La ricerca di un punto nel KD-Tree è simile alla ricerca di un punto in un albero binario di ricerca. La ricerca di un punto in un KD-Tree ha un costo computazionale di $O(log(N))$.
+La struttura richiede un pre-processing dei dati e si presenta come un albero binario. Ogni nodo dell'albero rappresenta un iperpiano che divide lo spazio in due parti, o più semplicemente impone un vincolo tra i due nodi figli successivi. I nodi foglia contengono i punti del dataset. La _"k"_ nel nome si riferisce appunto al numero di features presenti. La ricerca di un punto nel KD-Tree è simile alla ricerca di un punto in un albero binario di ricerca. La ricerca di un punto in un KD-Tree ha un costo computazionale di $O(log(N))$.
+
+Sempre utilizzando l'esempio pratico, osserviamo la struttura del KD-Tree dopo l'applicazione del Min-Max scaling:
+
+
+=== Ball-Tree
