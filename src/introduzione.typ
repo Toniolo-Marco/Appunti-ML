@@ -59,3 +59,11 @@ Le principali task per cui viene adottato il Machine Learning sono:
 
 /*TODO: terminare questo trafiletto*/
 /*TODO: elencare gli attributi del modello*/
+
+== Errors <errors>
+
+Solitamente, quando si allena un modello si effettuano delle misure sull'errore. Questo errore viene chiamato *training error*; e durante la fase di training si mira a ridurlo.
+
+Ciò che separa il Machine Learning da un semplice problema di ottimizzazione è che oltre a minimizzare il *training error* l'obbiettivo è di minimizzare anche il *generalization error* (anche noto come *test error*). Questo errore viene misurato in fase di test ed è definito, grosso modo, come: _il valore dell'errore atteso su un nuovo input._
+
+Proprio per questo le assunzioni fatte sui dati nella @dataset[Sezione] sono necessarie.

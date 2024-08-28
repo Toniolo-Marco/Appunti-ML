@@ -19,12 +19,12 @@
 
 #show link: underline
 
-#include "chapter-1.typ"
+#include "introduzione.typ"
 
-#include "chapter-2.typ"
+#include "regressione-lineare.typ"
 
-#include "chapter-3.typ"
+#include "polynomial-regression.typ"
 
-#include "chapter-4.typ"
+#include "valutazione-ed-errori.typ"
 
-#include "chapter-5.typ"
+#include "KNN.typ"

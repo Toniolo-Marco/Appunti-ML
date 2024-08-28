@@ -1,4 +1,4 @@
-= Polinomial Regression <polinomial-regression>
+= Polynomial Regression <polynomial-regression>
 
 Nel caso in cui non avessimo altre features a disposizione, o la distribuzione dei dati non fosse lineare, potremmo utilizzare una regressione polinomiale. Nel caso preso in esempio, abbiamo visto come la retta non fosse in grado di generalizzare particolarmente bene i dati. Prima di procedere con la pratica vediamo la formula della regressione polinomiale, anche se è abbastanza intuitiva e non ci dovrebbe essere nulla da spiegare:
 
@@ -51,6 +51,10 @@ Se alzialiamo ulteriormente il grado del polinomio, il modello non migliorerà; 
 )
 
 Dopo questi due capitoli, dovrebbero sorgere al lettore almeno due domande:
+
++ Com'è possibile che la regressione lineare performi meglio della regressione polinomiale con grado $>= 15$? 
+
+  Innanzitutto è necessario precisare che come "test set" abbiamo utilizzato un solo data point. Tuttavia questo è un esempio del *Tradeoff tra Bias e Varianza*: nonostante la regressione lineare abbia un *training error* maggiore della regressione polinomiale in alcuni casi, è in grado di *generalizzare* meglio a causa della alta variabilità dei modelli con gradi più alti.
 
 + Come possiamo valutare il modello in modo rigoroso?
 

@@ -72,7 +72,8 @@ Per riprendere ciò che abbiamo detto sopra, ecco qui un esempio di overfitting 
 
     image("../code/height-weight/img/decision_boundaries_female_k=245_metric=minkowski.png"),
 )
-      
+
+Il fatto che overfitti si nota dalla presenza di molteplici "isole" all'interno delle diverse categorie (idealmente vorremmo che fosse a fasce); mentre l'underfitting si nota dalla presenza di una sola categoria o dall'assenza di alcune.
 
 Come sempre per questi esempi il dataset è troppo piccolo ed il tempo è poco, per non complicarci troppo le cose evitiamo di utilizzare un validation set, impostiamo $K = 11$ e vediamo come si comporta il modello.
 #footnote("Sfortunatamente con questo dataset, utilizzando valori maggiori, si perdono categorie")
@@ -81,6 +82,14 @@ Come sempre per questi esempi il dataset è troppo piccolo ed il tempo è poco, 
 
 #image("../code/height-weight/img/decision_boundaries_male.png")
 #image("../code/height-weight/img/decision_boundaries_female.png")
+
+== Standardization and Scaling <standardization> <scaling>
+
+I più scaltri tra i lettori si saranno chiesti se una feature può prevalere sulle altre, ebbene sì, nonostante il dataset presentato prima non lo dimostri può accadere; ed è compito nostro prevenire questo comportamento.
+
+Gli strumenti presentati durante il corso sono la standardizzazione (o Z-score normalization) e il Min-Max scaling.
+
+
 
 Fortunatamente per me, un maschio di 178cm che pesa 77kg rientra nella categoria 2 (Normal).
 
@@ -106,9 +115,5 @@ Contrariamente a quanto si possa pensare esistono diverse metriche che possono e
       $ D(x, y) = ( sum_(i=1)^n |x_i - y_i|^p )^(1/p) " con " p>= 1 $
     ],
 
+
 )
-
-
-== Esempio
-
-
