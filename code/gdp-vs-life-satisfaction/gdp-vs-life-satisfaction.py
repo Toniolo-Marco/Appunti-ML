@@ -14,9 +14,13 @@ def plot_data_and_model(X, y, model=None, poly_features=None, degree=None, title
         if poly_features is not None:
             X_plot = poly_features.transform(X_plot)
         
-        X_plot_sorted = np.sort(X_plot[:, 0]) if degree is not None else X_plot[:, 0]
-        plt.plot(X_plot_sorted, 
-                 model.predict(X_plot)[np.argsort(X_plot[:, 0])], 
+        # Correct sorting by the original X values
+        sorted_idx = np.argsort(X_plot[:, 0])
+        X_plot_sorted = X_plot[sorted_idx]
+
+        # Plot the predictions using the sorted index
+        plt.plot(X_plot_sorted[:, 0], 
+                 model.predict(X_plot)[sorted_idx], 
                  color='red', linewidth=2)
     
     plt.title(title)
@@ -87,7 +91,7 @@ austria_gdp = pd.DataFrame({'GDP per capita, PPP (constant 2017 international $)
 predicted_life_satisfaction_score_linear = linear_regression_model.predict(austria_gdp.values)
 print('Predicted life-satisfaction Score for Austria (Linear Regression):', predicted_life_satisfaction_score_linear[0])
 
-degrees = [2, 3, 5, 15, 60]
+degrees = [2,3,5,15,60]
 for i in degrees:
     polynomial_regression_model, poly_features = polynomial_regression(X.values, y.values, degree=i)
 

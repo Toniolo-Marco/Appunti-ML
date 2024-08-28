@@ -99,6 +99,7 @@ Contrariamente a quanto si possa pensare esistono diverse metriche che possono e
     columns: (1fr,2fr),
     rows: 2,
     column-gutter: 25pt,
+    row-gutter: 25pt,
     figure(
       image("../img/2D_distance.png", width: 100%), 
       caption: "La lunghezza della linea blu, rossa e gialla è la medesima e rappresenta la Manhattan distance tra i due punti (12). La lunghezza della linea verde rappresenta la Euclidean distance tra i due punti (6√2)",
@@ -114,6 +115,39 @@ Contrariamente a quanto si possa pensare esistono diverse metriche che possono e
       - *Minkowski distance*: una generalizzazione della distanza euclidea e della distanza di Manhattan. La formula è la seguente:
       $ D(x, y) = ( sum_(i=1)^n |x_i - y_i|^p )^(1/p) " con " p>= 1 $
     ],
+    grid.cell(
+      colspan: 2,    
+      [
+        - *Cosine distance*: la cosine distance è derivata dalla _cosine similarity_, che misura quanto due vettori sono orientati nella stessa direzione. La formula per la cosine similarity tra due vettori $bold(A)$ e $bold(B)$ è: 
 
+        $ "Cosine Similarity"(bold(A),bold(B)) = frac(bold(A) dot bold(B),||bold(A)|| ||bold(B)||) $
+        
+        dove $bold(A) dot bold(B)$ è il prodotto scalare, mentre $||bold(A)|| ||bold(B)||$ sono le norme dei vettori. La cosine similarity varia tra $-1$ e $1$, dove $1$ indica che i vettori puntano esattamente nella stessa direzione, $0$ indica che sono ortogonali (non correlati), e $-1$ indica che puntano in direzioni opposte.
 
+        La cosine distance è semplicemente definita come:
+
+        $ "Cosine Distance"(bold(A),bold(B)) = 1 - "Cosine Similarity"(bold(A),bold(B)) $ 
+
+        Dunque, la cosine distance varia tra $0$ e $2$. Un valore di 0 indica che i vettori sono identici in termini di direzione, mentre un valore di $1$ indica che sono ortogonali.
+
+        La cosine distance è particolarmente utile in applicazioni come l'analisi di testi e il riconoscimento di immagini, dove i dati possono essere vettori di caratteristiche normalizzati. Per esempio nell'analisi dei testi ogni elento del vettore può rappresentare il numero di occorrenze di una certa parola.
+    ]
+    )
 )
+
+
+== Curse of Dimensionality
+
+Il problema principale dell'utilizzo delle distanze è che queste crescono esponenzialmente al crescere delle dimensioni; questo problema è noto come *Curse of Dimensionality*. Con KNN è necessario avere un dataset denso, i data-point dello stesso gruppo devono essere vicini *in ogni dimensione*; a differenza di altri algoritmi. Inoltre, per ottenere una buona performance, il numero di dati deve crescere esponenzialmente con il numero delle dimensioni.
+
+Possiamo osservare le distribuzioni delle distanze tra due punti in 1,2,3 dimensioni:
+
+#image("../code/curse-of-dimensionality/img/plot.png")
+
+Per evidenziare l'andamento esponenziale trovate qui un grafico che indica la distanza media di due punti con coordinate $[0;100]$, in un sample composto da 1000 elementi, nelle dimensioni da 1D a 100D.
+ 
+#image("../code/curse-of-dimensionality/img/trend.png")
+
+
+
+

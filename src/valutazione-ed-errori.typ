@@ -13,10 +13,6 @@ Allo stesso modo $lambda$ nella regolarizzazione, che vedremo successivamente è
 Gli iperparametri non vengono appresi durante il training, proprio perché se fosse così il modello non sarebbe in grado di generalizzare bene: ad esempio nella polinomial regression, se il grado del polinomio fosse un parametro appreso, il modello potrebbe avere un grado del polinomio molto alto, per minimizzare l'errore sul training set, ma non generalizzerebbe bene.
 Questo fenomeno è noto come *overfitting*; e da qui nasce la necessità di un validation set.
 
-
-
-
-
 Ovviamente questa divisione dipende dalla quantità di dati a disposizione, nel caso del nostro esempio i dati a disposizione sono poco più di un centinaio; in questi casi è utile sfruttare la tecnica del *cross-validation*.
 
 == Underfitting e Overfitting <underfitting-overfitting>
