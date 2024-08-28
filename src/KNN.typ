@@ -85,13 +85,41 @@ Come sempre per questi esempi il dataset è troppo piccolo ed il tempo è poco, 
 
 == Standardization and Scaling <standardization> <scaling>
 
-I più scaltri tra i lettori si saranno chiesti se una feature può prevalere sulle altre, ebbene sì, nonostante il dataset presentato prima non lo dimostri può accadere; ed è compito nostro prevenire questo comportamento.
+Poiché KNN si basa sulla distanza tra i punti, se una feature ha un range molto più ampio rispetto ad un'altra, la distanza sarà dominata dalla feature con il range più ampio. Per evitare questo problema, è necessario standardizzare o scalare i dati. Gli strumenti presentati durante il corso sono la standardizzazione (o Z-score normalization) e il Min-Max scaling.
 
-Gli strumenti presentati durante il corso sono la standardizzazione (o Z-score normalization) e il Min-Max scaling.
+=== Z-score normalization
 
+Questa procedura scala i dati in modo che abbiano una media di 0 e una deviazione standard di 1. La formula è la seguente:
 
+$ z = frac(x - mu, sigma) $
 
-Fortunatamente per me, un maschio di 178cm che pesa 77kg rientra nella categoria 2 (Normal).
+Dove $x$ è il valore della feature, $mu$ è la media della feature e $sigma$ è la deviazione standard della feature.
+
+Tornando all'esempio precedente, possiamo vedere come la standardizzazione influenzi la densità del dataset:
+
+#grid(
+  columns: (1fr,1fr),
+  column-gutter: 0pt,
+  image("../code/height-weight/img/z-score_male_k=8.png"), 
+  image("../code/height-weight/img/z-score_female_k=8.png")
+)
+
+=== Min-Max scaling
+
+Questa procedura scala i dati in modo che siano compresi tra 0 e 1. La formula è la seguente:
+
+$ x_{"scaled"} = frac(x - min(x), max(x) - min(x)) $
+
+Di seguito possiamo vedere come il Min-Max scaling influenzi la densità del dataset:
+
+#grid(
+  columns: (1fr,1fr),
+  column-gutter: 0pt,
+  image("../code/height-weight/img/min-max_male_k=8.png"),
+  image("../code/height-weight/img/min-max_female_k=8.png")
+)
+
+== Distance Metrics
 
 Contrariamente a quanto si possa pensare esistono diverse metriche che possono essere utilizzate per determinare la distanza da i data-points (indichiamo con $x$ e $y$ due punti nello spazio $n$-dimensionale e con $x_1, x_2, ..., x_n$ e $y_1, y_2, ..., y_n$ le loro coordinate):
 
@@ -149,5 +177,11 @@ Per evidenziare l'andamento esponenziale trovate qui un grafico che indica la di
 #image("../code/curse-of-dimensionality/img/trend.png")
 
 
+== Computational Cost
 
+Il fatto che KNN sia un _lazy learner_ non implica che non ci sia un costo computazionale; anzi il costo compotuzionale pesa solo sulla fase di predizione (_inferece phase_).
+L'algoritmo è  lineare, il calcolo della distanza per tutti i $k$ punti del dataset: $O(k N)$. Alcune strutture dati possono essere utilizzate per ridurre il costo computazionale, come il KD-Tree o il Ball-Tree, che permettono di ridurre il costo computazionale a $O(log(N))$.
 
+=== KD-Tree
+
+La struttura richiede un pre-processing dei dati e si presenta come un albero binario. Ogni nodo dell'albero rappresenta un iperpiano che divide lo spazio in due parti, o più semplicemente impone un vincolo tra i due nodi figli successivi. I nodi foglia contengono i punti del dataset. La ricerca di un punto nel KD-Tree è simile alla ricerca di un punto in un albero binario di ricerca. La ricerca di un punto in un KD-Tree ha un costo computazionale di $O(log(N))$.
