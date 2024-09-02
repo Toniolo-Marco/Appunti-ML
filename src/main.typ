@@ -27,4 +27,6 @@
 
 #include "valutazione-ed-errori.typ"
 
+#include "linear-classifier.typ"
+
 #include "KNN.typ"

@@ -12,7 +12,7 @@ Questi parametri, anche chiamati pesi, determinano il comportamento del sistema;
 
 $ hat(y) = bold(w)^tack.b   bold(x) + b $
 
-Questa è una _affine function_, ovvero una funzione lineare con una traslazione ($b$ è noto come _intercept term_ o _bias_). Come si può notare, inoltre, l'equazione assomiglia molto a quella di una retta in due dimensioni: $y = m x + q$. Infatti per un grado $n=1$ la regressione lineare è proprio una retta. 
+Questa è una _affine function_, ovvero una funzione lineare con una traslazione ($b$ è noto come _intercept term_ o _bias_<intercept_term>). Come si può notare, inoltre, l'equazione assomiglia molto a quella di una retta in due dimensioni: $y = m x + q$. Infatti per un grado $n=1$ la regressione lineare è proprio una retta. 
 
 Facciamo un breve esempio pratico: supponiamo di avere un #link("https://ourworldindata.org/grapher/gdp-vs-happiness")[dataset con GDP per capita e un valore di soddisfazione della vita] per ogni paese del mondo e volessimo costruire un modello che preveda quest'ultimo valore #footnote[Questo valore viene misurato con la #link("https://news.gallup.com/poll/122453/understanding-gallup-uses-cantril-scale.aspx")[scala di Cantril].].
 

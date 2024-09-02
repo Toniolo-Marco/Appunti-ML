@@ -11,7 +11,7 @@
 Il KNN ha alcuni aspetti caratteristici:
 #footnote[Se la differenza tra _lazy_ e _instance-based_ non è chiara ora lo sarà nel capitolo dell'SVM.]
 
-- È un modello *non parametrico*, cioè non necessita di assunzioni sulla distribuzione dei dati.
+- È un modello *non parametrico*, cioè non necessita di assunzioni sulla distribuzione dei dati. La complessità del modello cresce con la dimensione del dataset.
 
 - È un *lazy learner*. Il termine _lazy learning_ si riferisce all'approccio dell'apprendimento in cui il modello non fa praticamente nulla durante la fase di addestramento. In altre parole, l'algoritmo rimanda il processo di apprendimento fino a quando non è necessario fare una previsione. 
 
@@ -73,7 +73,7 @@ Per riprendere ciò che abbiamo detto sopra, ecco qui un esempio di overfitting 
     image("../code/height-weight/img/decision_boundaries_female_k=245_metric=minkowski.png"),
 )
 
-Il fatto che overfitti si nota dalla presenza di molteplici "isole" all'interno delle diverse categorie (idealmente vorremmo che fosse a fasce); mentre l'underfitting si nota dalla presenza di una sola categoria o dall'assenza di alcune.
+Il fatto che overfitti si nota dalla presenza di molteplici "isole" all'interno delle diverse categorie (idealmente vorremmo che fosse a fasce); mentre l'underfitting si nota dalla presenza di una sola categoria o dall'assenza di alcune. Da questo esempio possiamo inoltre dedurre che il KNN può funzionare senza modifiche anche per la classificazione multi-classe.
 
 Come sempre per questi esempi il dataset è troppo piccolo ed il tempo è poco, per non complicarci troppo le cose evitiamo di utilizzare un validation set, impostiamo $K = 11$ e vediamo come si comporta il modello.
 #footnote("Sfortunatamente con questo dataset, utilizzando valori maggiori, si perdono categorie")
@@ -190,3 +190,17 @@ Sempre utilizzando l'esempio pratico, osserviamo la struttura del KD-Tree dopo l
 
 
 === Ball-Tree
+=== Cover Tree
+
+=== R-Tree
+=== VP-Tree
+
+=== Approximate Nearest Neighbor Search (ANN) Techniques
+=== Locality Sensitive Hashing (LSH)
+=== Annoy
+
+=== Hierarchical Navigable Small World (HNSW) Graphs
+=== Lattice-based Methods
+=== FLANN (Fast Library for Approximate Nearest Neighbors)
+
+/*TODO: terminare queste sezioni*/

@@ -54,6 +54,7 @@ Dopo questi due capitoli, dovrebbero sorgere al lettore almeno due domande:
 
 + Com'è possibile che la regressione lineare performi meglio della regressione polinomiale con grado $>= 15$? 
 
+  <bias_varianza>
   Innanzitutto è necessario precisare che come "test set" abbiamo utilizzato un solo data point. Tuttavia questo è un esempio del *Tradeoff tra Bias e Varianza*: nonostante la regressione lineare abbia un *training error* maggiore della regressione polinomiale in alcuni casi, è in grado di *generalizzare* meglio a causa della alta variabilità dei modelli con gradi più alti.
 
 + Come possiamo valutare il modello in modo rigoroso?

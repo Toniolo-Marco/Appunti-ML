@@ -38,7 +38,7 @@ def plot_and_save_decision_boundaries_kdtree(gender_df, gender_name, file_name, 
     y = gender_df['Index'].values
 
     # Train KD-Tree
-    kdtree = KDTree(X, leaf_size=30, metric='minkowski')
+    kdtree = KDTree(X, leaf_size=30, metric='euclidean')
 
     # Create a mesh grid over the feature space
     x_min, x_max = X[:, 0].min() - 0.1, X[:, 0].max() + 0.1
@@ -57,7 +57,7 @@ def plot_and_save_decision_boundaries_kdtree(gender_df, gender_name, file_name, 
     fig, ax = plt.subplots(figsize=(8, 8))
 
     # Plot the decision boundary
-    ax.contourf(xx, yy, y_pred_grid, alpha=0.5, cmap=cmap)
+    ax.contourf(xx, yy, y_pred_grid, alpha=0.3, cmap=cmap)
 
     # Plot the original data points
     scatter = ax.scatter(X[:, 0], X[:, 1], c=y, cmap=cmap, edgecolors="k")
@@ -80,8 +80,8 @@ def plot_and_save_decision_boundaries_kdtree(gender_df, gender_name, file_name, 
     plt.savefig(f"{file_name}_{gender_name.lower()}_k={n_neighbors}.png", bbox_inches='tight')
     plt.close()
 
-# Function to plot the KD-Tree structure with filled areas
-def plot_kdtree_structure_filled(kdtree, X, y, ax, depth=0, x_min=0, x_max=1, y_min=0, y_max=1):
+# Function to plot the KD-Tree structure with filled areas and single category number
+def plot_kdtree_structure_single_label(kdtree, X, y, ax, depth=0, x_min=0, x_max=1, y_min=0, y_max=1):
     if len(X) == 0:
         return
     
@@ -97,22 +97,29 @@ def plot_kdtree_structure_filled(kdtree, X, y, ax, depth=0, x_min=0, x_max=1, y_
     region_class = np.bincount(y).argmax()
     color = index_colors[region_class]
 
-    # Fill the region with the corresponding color without shading
+    # Check if this is a leaf node (no further split)
+    if len(X) == 1 or (x_max - x_min < 0.01 and y_max - y_min < 0.01):
+        # Fill the region with the corresponding color
+        ax.fill_between([x_min, x_max], y_min, y_max, color=color, alpha=0.5)
+        # Label the region with the predicted class
+        ax.text((x_min + x_max) / 2, (y_min + y_max) / 2, str(region_class), color='black', fontsize=10, ha='center', va='center')
+        return
+
+    # Fill the region with the corresponding color
     if axis == 0:
-        ax.fill_betweenx([y_min, y_max], x_min, median_point[0], color=color, alpha=1)  # Set alpha to 1 for solid color
-        plot_kdtree_structure_filled(kdtree, X[sorted_idx[:median_idx]], y[sorted_idx[:median_idx]], ax, depth + 1, x_min, median_point[0], y_min, y_max)
-        plot_kdtree_structure_filled(kdtree, X[sorted_idx[median_idx + 1:]], y[sorted_idx[median_idx + 1:]], ax, depth + 1, median_point[0], x_max, y_min, y_max)
+        ax.fill_betweenx([y_min, y_max], x_min, median_point[0], color=color, alpha=0.5)
+        plot_kdtree_structure_single_label(kdtree, X[sorted_idx[:median_idx]], y[sorted_idx[:median_idx]], ax, depth + 1, x_min, median_point[0], y_min, y_max)
+        plot_kdtree_structure_single_label(kdtree, X[sorted_idx[median_idx + 1:]], y[sorted_idx[median_idx + 1:]], ax, depth + 1, median_point[0], x_max, y_min, y_max)
     else:
-        ax.fill_between([x_min, x_max], y_min, median_point[1], color=color, alpha=1)  # Set alpha to 1 for solid color
-        plot_kdtree_structure_filled(kdtree, X[sorted_idx[:median_idx]], y[sorted_idx[:median_idx]], ax, depth + 1, x_min, x_max, y_min, median_point[1])
-        plot_kdtree_structure_filled(kdtree, X[sorted_idx[median_idx + 1:]], y[sorted_idx[median_idx + 1:]], ax, depth + 1, x_min, x_max, median_point[1], y_max)
+        ax.fill_between([x_min, x_max], y_min, median_point[1], color=color, alpha=0.5)
+        plot_kdtree_structure_single_label(kdtree, X[sorted_idx[:median_idx]], y[sorted_idx[:median_idx]], ax, depth + 1, x_min, x_max, y_min, median_point[1])
+        plot_kdtree_structure_single_label(kdtree, X[sorted_idx[median_idx + 1:]], y[sorted_idx[median_idx + 1:]], ax, depth + 1, x_min, x_max, median_point[1], y_max)
 
     # Draw the splitting line
     if axis == 0:
         ax.plot([median_point[0], median_point[0]], [y_min, y_max], 'k-', lw=1)
     else:
         ax.plot([x_min, x_max], [median_point[1], median_point[1]], 'k-', lw=1)
-
 
 # Normalize data with min-max scaling
 df_minmax = normalize_min_max(df.copy(), ['Weight', 'Height'])
@@ -125,30 +132,30 @@ plot_and_save_decision_boundaries_kdtree(df_male_minmax, "Male", "./img/KD-tree"
 # Generate and save the plot for females using KD-Tree KNN
 plot_and_save_decision_boundaries_kdtree(df_female_minmax, "Female", "./img/KD-tree", n_neighbors=8, scaling_method='min-max')
 
-# Plot the KD-Tree structure for males with filled areas
+# Plot the KD-Tree structure for males with filled areas and single category number
 fig, ax = plt.subplots(figsize=(8, 8))
 ax.scatter(df_male_minmax['Weight'], df_male_minmax['Height'], c='b', s=20, edgecolor='k')
-plot_kdtree_structure_filled(KDTree(df_male_minmax[['Weight', 'Height']].values, leaf_size=30, metric='minkowski'), 
-                             df_male_minmax[['Weight', 'Height']].values, df_male_minmax['Index'].values, ax)
+plot_kdtree_structure_single_label(KDTree(df_male_minmax[['Weight', 'Height']].values, leaf_size=30, metric='euclidean'), 
+                                   df_male_minmax[['Weight', 'Height']].values, df_male_minmax['Index'].values, ax)
 ax.set_xlim(0, 1)
 ax.set_ylim(0, 1)
 ax.set_xlabel('Weight')
 ax.set_ylabel('Height')
-ax.set_title('KD-Tree Structure (Male) with Filled Areas')
+ax.set_title('KD-Tree Structure (Male) with Filled Areas and Single Category Number')
 plt.tight_layout()
-plt.savefig("./img/kdtree_structure_filled_male_solid.png", bbox_inches='tight')
+plt.savefig("./img/kdtree_structure_filled_male_single_number.png", bbox_inches='tight')
 plt.close()
 
-# Plot the KD-Tree structure for females with filled areas
+# Plot the KD-Tree structure for females with filled areas and single category number
 fig, ax = plt.subplots(figsize=(8, 8))
 ax.scatter(df_female_minmax['Weight'], df_female_minmax['Height'], c='r', s=20, edgecolor='k')
-plot_kdtree_structure_filled(KDTree(df_female_minmax[['Weight', 'Height']].values, leaf_size=50, metric='minkowski'), 
-                             df_female_minmax[['Weight', 'Height']].values, df_female_minmax['Index'].values, ax)
+plot_kdtree_structure_single_label(KDTree(df_female_minmax[['Weight', 'Height']].values, leaf_size=30, metric='euclidean'), 
+                                   df_female_minmax[['Weight', 'Height']].values, df_female_minmax['Index'].values, ax)
 ax.set_xlim(0, 1)
 ax.set_ylim(0, 1)
 ax.set_xlabel('Weight')
 ax.set_ylabel('Height')
-ax.set_title('KD-Tree Structure (Female) with Filled Areas')
+ax.set_title('KD-Tree Structure (Female) with Filled Areas and Single Category Number')
 plt.tight_layout()
-plt.savefig("./img/kdtree_structure_filled_female_solid.png", bbox_inches='tight')
+plt.savefig("./img/kdtree_structure_filled_female_single_number.png", bbox_inches='tight')
 plt.close()
