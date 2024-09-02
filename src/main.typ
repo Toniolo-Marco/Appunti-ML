@@ -30,3 +30,5 @@
 #include "linear-classifier.typ"
 
 #include "KNN.typ"
+
+#include "gradient-descent.typ"

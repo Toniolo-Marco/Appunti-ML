@@ -44,7 +44,7 @@ $ f(x) = h(bold(w) \cdot bold(x) + b) $
 L'algoritmo del Perceptron è molto semplice: inizializziamo i pesi e il bias a 0, e iteriamo su tutti gli esempi del training set. Per ogni esempio, calcoliamo la predizione del modello e aggiorniamo i pesi in base all'errore commesso. Di seguito l'algoritmo in pseudocodice; dove `y` è l'etichetta corretta (con valore $1$ o $-1$), `f(x)` è la predizione del modello nello step corrente, e `x_i` è l'elemento i-esimo del vettore delle features.
 
 #block(breakable: false)[
-```
+```c
 repeat until convergence {                    // or for a fixed number of iterations
   for each example in training set {
     if y != f(x) {                            // if the prediction is wrong
