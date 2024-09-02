@@ -246,10 +246,17 @@ La *confusion matrix* è una matrice che, a colpo d'occhio riesce a mostrare le 
 - Le righe rappresentano le classi reali (Labels)
 - Le colonne rappresentano le classi predette (Predictions)
 
-Anche se spesso si utilizzano valori percentuali. Riprendendo l'esempio precedente, possiamo costruire la confusion matrix
+Spesso si utilizzano valori percentuali, ed in generale è utile per capire su quale classe il nostro modello performa peggio e di conseguenza concentrarci su quella (magari aggiungendo datapoints appartenenti a quella classe nel dataset). Riprendendo l'esempio precedente, possiamo costruire la confusion matrix. Sulla diagonale principale, troviamo i valori corretti, mentre gli altri valori rappresentano gli errori commessi dal modello.
 
-#let diagonal = line(start: (0pt,0pt), end: (50%,50%), stroke:0.1em)
-
+#let diagonal = line(end: (100%,100%), stroke:0.1em)
+#let first_cell = box(width: 5em, height: 5em, stroke: none)[
+    #show line: place.with(top + left)
+    #diagonal
+    #rotate(45deg)[#place(center+horizon, dx:0.5em, dy: 1em)[Label]]
+    
+    #rotate(45deg)[#place(center+horizon, dx:-0.25em, dy: -1.5em)[Prediction]]
+  ]
+  
 #align(center+horizon,
 block(breakable: false)[
     #table(
@@ -260,7 +267,7 @@ block(breakable: false)[
     columns: (5em, 5em,5em,5em,5em),
     rows: (5em),
     align: (center+horizon),
-    diagonal
+    first_cell
     , [Circle], [Square], [Triangle], [Rectangle],
     [circle],             [1],      [1],      [0],        [0], 
     [square],             [0],      [1],      [0],        [0],
