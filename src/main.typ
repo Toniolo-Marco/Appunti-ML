@@ -32,3 +32,7 @@
 #include "KNN.typ"
 
 #include "gradient-descent.typ"
+
+#include "support-vector-machines.typ"
+
+#include "decision-tree.typ"
