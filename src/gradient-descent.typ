@@ -84,8 +84,8 @@ Ci sono decine di surrogate loss function, già implementate, ognuna con le prop
       rowspan: 1,
       par(justify: true)[
         *Descrizione:* è la funzione di loss ideale per la classificazione, poiché misura semplicemente se la predizione $y'$ ha lo stesso segno del valore reale $y$. Restituisce $1$ se la predizione è errata (cioè se $y dot y' ≤ 0$) e $0$ se la predizione è corretta (cioè se $y dot y'>0$).
-
-        La funzione di loss 0/1 non è differenziabile.
+        *Vantaggi:* Facile da interpretare e implementare.
+        *Svantaggi:* La funzione di loss 0/1 non è differenziabile. Non fornisce informazioni sulla distanza tra la predizione e il valore reale.
         ],
     ),    
   )
@@ -109,7 +109,8 @@ Ci sono decine di surrogate loss function, già implementate, ognuna con le prop
       colspan: 2,
       rowspan: 1,
       par(justify: true)[
-        *Descrizione:* #lorem(50)],
+        *Descrizione:* La hinge loss è utilizzata principalmente nelle Support Vector Machines (SVM) per classificazione binaria. Penalizza le predizioni che si trovano all'interno del margine o sono classificate erroneamente.
+        ],
     ),
   )
 )
@@ -133,7 +134,7 @@ Ci sono decine di surrogate loss function, già implementate, ognuna con le prop
       colspan: 2,
       rowspan: 1,
       par(justify: true)[
-        *Descrizione:* #lorem(50)],
+        *Descrizione:* La squared loss misura la differenza quadrata tra la previsione del modello e il valore reale. È comunemente usata nei problemi di regressione.],
     ),
   )
 )
@@ -156,33 +157,13 @@ Ci sono decine di surrogate loss function, già implementate, ognuna con le prop
       colspan: 2,
       rowspan: 1,
       par(justify: true)[
-        *Descrizione:* #lorem(50)],
+        *Descrizione:* L'exponential loss è utilizzata principalmente con l'algoritmo di boosting come AdaBoost. La funzione di perdita aumenta esponenzialmente con l'aumento dell'errore.
+        ],
     ),
   )
 )
 
-#align(center,
-  grid(
-    columns: (1fr, 1fr, 3fr),
-    align: (center+horizon),
-    rows: (3em, 220pt),
 
-    [Log Loss],[ $l(y, y') = log(1+exp(-y y'))$],
-    
-    grid.cell(
-      colspan: 1,
-      rowspan: 2,
-      image("../code/surrogate-loss-functions/log_loss.png", width: 100%),
-    ),
-
-    grid.cell(
-      colspan: 2,
-      rowspan: 1,
-      par(justify: true)[
-        *Descrizione:* #lorem(50)],
-    ),
-  )
-)
 
 #align(center,
   image("../code/surrogate-loss-functions/all_losses_comparison.png", width: 100%)

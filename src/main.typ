@@ -8,7 +8,7 @@
 
 #set document(
   title: [Appunti del corso "Introduction to Machine Learning"],
-  author: ("Toniolo Marco","Federico Frigerio"),
+  author: ("Toniolo Marco"),
   keywords: ("Introduction", "Machine Learning", "ML", "Appunti", "Riassunto"),
   date: (auto)
 )
